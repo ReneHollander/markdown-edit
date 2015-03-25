@@ -1,5 +1,6 @@
 package at.rene8888.markdownedit;
 
+import at.rene8888.markdownedit.serializers.FencedCodeBlockSerializer;
 import com.lowagie.text.DocumentException;
 import javafx.application.Application;
 import javafx.embed.swing.SwingNode;
@@ -24,7 +25,7 @@ import java.io.*;
 import java.util.Collections;
 import java.util.function.IntFunction;
 
-public class TestFS extends Application {
+public class PrototypeFlyingSaucer extends Application {
 
     private static final File DATA_FOLDER = new File("data");
     private static final File STYLE_FOLDER = new File(DATA_FOLDER, "style");
@@ -61,8 +62,6 @@ public class TestFS extends Application {
 
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
-
-        // TODO maybe use pygments http://pygments.org/docs/java/
 
         tidy = new Tidy();
         tidy.setShowErrors(0);

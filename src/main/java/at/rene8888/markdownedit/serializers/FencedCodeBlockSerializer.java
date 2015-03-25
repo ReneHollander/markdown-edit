@@ -1,5 +1,6 @@
-package at.rene8888.markdownedit;
+package at.rene8888.markdownedit.serializers;
 
+import at.rene8888.markdownedit.simplepygments.PygmentsHighlighter;
 import org.parboiled.common.StringUtils;
 import org.pegdown.Printer;
 import org.pegdown.VerbatimSerializer;

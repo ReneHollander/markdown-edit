@@ -1,4 +1,4 @@
-package at.rene8888.markdownedit;
+package at.rene8888.markdownedit.simplepygments;
 
 import org.python.core.*;
 import org.python.util.PythonInterpreter;

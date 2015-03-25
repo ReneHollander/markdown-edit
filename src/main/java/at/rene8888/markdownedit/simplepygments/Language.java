@@ -1,4 +1,4 @@
-package at.rene8888.markdownedit;
+package at.rene8888.markdownedit.simplepygments;
 
 import java.util.Arrays;
 

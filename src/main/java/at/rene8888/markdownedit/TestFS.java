@@ -12,8 +12,7 @@ import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
 import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
-import org.pegdown.Extensions;
-import org.pegdown.PegDownProcessor;
+import org.pegdown.*;
 import org.w3c.dom.Document;
 import org.w3c.tidy.Tidy;
 import org.xhtmlrenderer.pdf.ITextRenderer;
@@ -22,6 +21,7 @@ import org.xhtmlrenderer.simple.XHTMLPanel;
 
 import javax.swing.*;
 import java.io.*;
+import java.util.Collections;
 import java.util.function.IntFunction;
 
 public class TestFS extends Application {
@@ -119,7 +119,7 @@ public class TestFS extends Application {
     }
 
     public Document getAsDocument() {
-        String htmlMarkdown = PEGDOWN_PROCESSOR.markdownToHtml(codeArea.getText());
+        String htmlMarkdown = PEGDOWN_PROCESSOR.markdownToHtml(codeArea.getText(), new LinkRenderer(), Collections.<String, VerbatimSerializer>singletonMap(VerbatimSerializer.DEFAULT, FencedCodeBlockSerializer.INSTANCE));
         StringBuilder contentBuilder = new StringBuilder();
         contentBuilder.append(HTML_FRAMEWORK_FIRST_PART);
         contentBuilder.append(htmlMarkdown);

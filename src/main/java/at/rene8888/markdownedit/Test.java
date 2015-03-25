@@ -54,8 +54,6 @@ public class Test extends Application {
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
 
-        com.threecrickets.jygments.grammar.LexerHelper lh = new com.threecrickets.jygments.grammar.LexerHelper();
-
         BorderPane bp = new BorderPane();
 
         HBox hbox = new HBox();

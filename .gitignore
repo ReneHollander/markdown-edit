@@ -5,3 +5,4 @@ target/
 *.class
 *.jar
 *.iml
+dependency-reduced-pom.xml

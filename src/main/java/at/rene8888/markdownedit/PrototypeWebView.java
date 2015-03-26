@@ -1,12 +1,14 @@
 package at.rene8888.markdownedit;
 
+import at.rene8888.markdownedit.gui.Editor;
 import at.rene8888.markdownedit.markdown.Markdown;
 import at.rene8888.markdownedit.markdown.Pegdown;
-import at.rene8888.markdownedit.serializers.FencedCodeBlockSerializer;
 import com.lowagie.text.DocumentException;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -15,16 +17,11 @@ import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
 import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
-import org.pegdown.Extensions;
-import org.pegdown.LinkRenderer;
-import org.pegdown.PegDownProcessor;
-import org.pegdown.VerbatimSerializer;
 import org.w3c.dom.Document;
 import org.w3c.tidy.Tidy;
 import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import java.io.*;
-import java.util.Collections;
 import java.util.function.IntFunction;
 
 public class PrototypeWebView extends Application {
@@ -70,10 +67,19 @@ public class PrototypeWebView extends Application {
 
         markdown = new Pegdown();
 
+        Menu menu1 = new Menu("File");
+        Menu menu2 = new Menu("Options");
+        Menu menu3 = new Menu("Help");
+
+        MenuBar menuBar = new MenuBar();
+        menuBar.getMenus().addAll(menu1, menu2, menu3);
+
+
         BorderPane bp = new BorderPane();
+        bp.setTop(menuBar);
 
         HBox hbox = new HBox();
-        bp.setTop(hbox);
+        //bp.setTop(hbox);
 
         SplitPane sp = new SplitPane();
         bp.setCenter(sp);
@@ -117,7 +123,7 @@ public class PrototypeWebView extends Application {
 
         // create the scene
         stage.setTitle("Web View");
-        Scene scene = new Scene(bp, 750, 500);
+        Scene scene = new Scene(new Editor(), 750, 500);
         stage.setScene(scene);
         stage.show();
 

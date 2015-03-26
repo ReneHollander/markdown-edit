@@ -1,5 +1,7 @@
 package at.rene8888.markdownedit;
 
+import at.rene8888.markdownedit.markdown.Markdown;
+import at.rene8888.markdownedit.markdown.Pegdown;
 import at.rene8888.markdownedit.serializers.FencedCodeBlockSerializer;
 import com.lowagie.text.DocumentException;
 import javafx.application.Application;
@@ -33,8 +35,6 @@ public class PrototypeWebView extends Application {
     private static String HTML_FRAMEWORK_FIRST_PART;
     private static String HTML_FRAMEWORK_SECOND_PART;
 
-    private static final PegDownProcessor PEGDOWN_PROCESSOR = new PegDownProcessor(Extensions.ALL - Extensions.ANCHORLINKS);
-
     static {
         try {
             String[] cssFiles = {"gfm.css", "highlighting.css", "layout.css"};
@@ -56,6 +56,7 @@ public class PrototypeWebView extends Application {
         }
     }
 
+    private Markdown markdown;
     private WebView webView;
     private Tidy tidy;
     private CodeArea codeArea;
@@ -66,6 +67,8 @@ public class PrototypeWebView extends Application {
         tidy = new Tidy();
         tidy.setShowErrors(0);
         tidy.setQuiet(true);
+
+        markdown = new Pegdown();
 
         BorderPane bp = new BorderPane();
 
@@ -82,7 +85,6 @@ public class PrototypeWebView extends Application {
             long start;
             long stop;
             start = System.nanoTime();
-            System.out.println(getAsString());
             webView.getEngine().loadContent(getAsString());
             stop = System.nanoTime();
             long diff = stop - start;
@@ -90,6 +92,18 @@ public class PrototypeWebView extends Application {
         });
         webView = new WebView();
         sp.getItems().addAll(codeArea, webView);
+
+        Button save = new Button("Save");
+        save.setOnAction((event) -> {
+            try {
+                FileWriter fw = new FileWriter(new File("out.md"));
+                fw.write(codeArea.getText());
+                fw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        hbox.getChildren().add(save);
 
         Button toPdf = new Button("To PDF");
         toPdf.setOnAction((event) -> {
@@ -115,8 +129,7 @@ public class PrototypeWebView extends Application {
     }
 
     public String getAsString() {
-        String htmlMarkdown = PEGDOWN_PROCESSOR.markdownToHtml(codeArea.getText(), new LinkRenderer(), Collections.<String, VerbatimSerializer>singletonMap(VerbatimSerializer.DEFAULT, FencedCodeBlockSerializer.INSTANCE));
-        return HTML_FRAMEWORK_FIRST_PART + htmlMarkdown + HTML_FRAMEWORK_SECOND_PART;
+        return HTML_FRAMEWORK_FIRST_PART + this.markdown.toHtmlString(codeArea.getText()) + HTML_FRAMEWORK_SECOND_PART;
     }
 
     public void toPdf(File f) throws IOException, DocumentException {

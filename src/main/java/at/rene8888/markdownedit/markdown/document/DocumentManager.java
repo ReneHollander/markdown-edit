@@ -1,6 +1,9 @@
 package at.rene8888.markdownedit.markdown.document;
 
+import at.rene8888.markdownedit.exception.ReadException;
 import at.rene8888.markdownedit.exception.SaveException;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -18,9 +21,12 @@ public class DocumentManager {
         return activeDocuments;
     }
 
-    public MarkdownDocument openDocument(File file) {
-        // TODO open doc
-        return null;
+    public MarkdownDocument openDocument(File file) throws ReadException {
+        String fileType = FilenameUtils.getExtension(file.getAbsolutePath());
+        DocumentType dt = DocumentType.getDocumentTypeByFileType(fileType);
+        MarkdownDocument doc = dt.getDocumentReader().readFromFile(file);
+        this.getActiveDocuments().add(doc);
+        return doc;
     }
 
     public boolean closeDocument(MarkdownDocument markdownDocument, boolean save) throws SaveException {

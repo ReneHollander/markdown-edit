@@ -6,9 +6,17 @@ import java.io.File;
 
 public abstract class MarkdownDocument {
 
-    private String content;
-    private DocumentType docType;
     private File path;
+    private String content;
+
+    public MarkdownDocument(File path, String content) {
+        this.content = content;
+        this.path = path;
+    }
+
+    public File getPath() {
+        return path;
+    }
 
     public String getContent() {
         return content;
@@ -18,26 +26,16 @@ public abstract class MarkdownDocument {
         this.content = content;
     }
 
-    public DocumentType getDocType() {
-        return docType;
-    }
-
-    public void setDocType(DocumentType docType) {
-        this.docType = docType;
-    }
-
-    public File getPath() {
-        return path;
-    }
+    public abstract DocumentType getDocType();
 
     public abstract void save() throws SaveException;
 
     @Override
     public String toString() {
         return "MarkdownDocument{" +
-                "content='" + content + '\'' +
-                ", docType=" + docType +
-                ", path=" + path +
+                "content='" + getContent() + '\'' +
+                ", docType=" + getDocType() +
+                ", path=" + getPath() +
                 '}';
     }
 }

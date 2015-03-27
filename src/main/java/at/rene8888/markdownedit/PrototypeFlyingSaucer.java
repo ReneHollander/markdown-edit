@@ -1,6 +1,6 @@
 package at.rene8888.markdownedit;
 
-import at.rene8888.markdownedit.serializers.FencedCodeBlockSerializer;
+import at.rene8888.markdownedit.markdown.serializers.FencedCodeBlockSerializer;
 import com.lowagie.text.DocumentException;
 import javafx.application.Application;
 import javafx.embed.swing.SwingNode;

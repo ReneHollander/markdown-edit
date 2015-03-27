@@ -1,6 +1,6 @@
-package at.rene8888.markdownedit.markdown;
+package at.rene8888.markdownedit.markdown.processor;
 
-import at.rene8888.markdownedit.serializers.FencedCodeBlockSerializer;
+import at.rene8888.markdownedit.markdown.serializers.FencedCodeBlockSerializer;
 import org.pegdown.Extensions;
 import org.pegdown.LinkRenderer;
 import org.pegdown.PegDownProcessor;
@@ -9,13 +9,13 @@ import org.pegdown.VerbatimSerializer;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Pegdown extends Markdown {
+public class PegdownProcessor extends MarkdownProcessor {
 
     private PegDownProcessor pegDownProcessor;
     private LinkRenderer linkRenderer;
     private Map<String, VerbatimSerializer> serializers;
 
-    public Pegdown() {
+    public PegdownProcessor() {
         this.pegDownProcessor = new PegDownProcessor(Extensions.ALL - Extensions.ANCHORLINKS);
         this.linkRenderer = new LinkRenderer();
         this.serializers = new HashMap<>();

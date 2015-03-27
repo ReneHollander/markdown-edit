@@ -1,8 +1,8 @@
 package at.rene8888.markdownedit;
 
 import at.rene8888.markdownedit.gui.Editor;
-import at.rene8888.markdownedit.markdown.Markdown;
-import at.rene8888.markdownedit.markdown.Pegdown;
+import at.rene8888.markdownedit.markdown.processor.MarkdownProcessor;
+import at.rene8888.markdownedit.markdown.processor.PegdownProcessor;
 import com.lowagie.text.DocumentException;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -53,7 +53,7 @@ public class PrototypeWebView extends Application {
         }
     }
 
-    private Markdown markdown;
+    private MarkdownProcessor markdownProcessor;
     private WebView webView;
     private Tidy tidy;
     private CodeArea codeArea;
@@ -65,7 +65,7 @@ public class PrototypeWebView extends Application {
         tidy.setShowErrors(0);
         tidy.setQuiet(true);
 
-        markdown = new Pegdown();
+        markdownProcessor = new PegdownProcessor();
 
         Menu menu1 = new Menu("File");
         Menu menu2 = new Menu("Options");
@@ -135,7 +135,7 @@ public class PrototypeWebView extends Application {
     }
 
     public String getAsString() {
-        return HTML_FRAMEWORK_FIRST_PART + this.markdown.toHtmlString(codeArea.getText()) + HTML_FRAMEWORK_SECOND_PART;
+        return HTML_FRAMEWORK_FIRST_PART + this.markdownProcessor.toHtmlString(codeArea.getText()) + HTML_FRAMEWORK_SECOND_PART;
     }
 
     public void toPdf(File f) throws IOException, DocumentException {

@@ -1,4 +1,4 @@
-package at.rene8888.markdownedit.serializers;
+package at.rene8888.markdownedit.markdown.serializers;
 
 import at.rene8888.markdownedit.simplepygments.PygmentsHighlighter;
 import org.parboiled.common.StringUtils;

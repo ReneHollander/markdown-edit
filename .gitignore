@@ -1,8 +1,13 @@
-.idea/
+*.iml
+*.ipr
+*.iws
+.gradle/
+
 out/
 target/
+build/
 
 *.class
 *.jar
-*.iml
+
 dependency-reduced-pom.xml

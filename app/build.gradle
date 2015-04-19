@@ -1,3 +1,6 @@
+version = "0.0.1"
+sourceCompatibility = theSourceCompatibility
+
 dependencies {
   compile project(':api')
 

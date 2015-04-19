@@ -1,13 +1,16 @@
+# ignore intellij idea project files
 *.iml
 *.ipr
 *.iws
-.gradle/
 
-out/
-target/
+# ignore eclipse project files
+.settings/
+.classpath
+.project
+
+# ignore gradle related directories
+.gradle/
 build/
 
-*.class
-*.jar
-
-dependency-reduced-pom.xml
+# never push build artifacts
+dist/

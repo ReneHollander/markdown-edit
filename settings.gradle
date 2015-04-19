@@ -1,1 +1,3 @@
 include 'api', 'app'
+
+rootProject.name = "markdown-edit"

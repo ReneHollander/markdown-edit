@@ -1,5 +1,7 @@
 package com.markdownedit.api.document;
 
+import com.markdownedit.api.plugin.Registry;
+
 import java.io.File;
 
 public abstract class Document {
@@ -11,6 +13,12 @@ public abstract class Document {
     public Document(File path, String content) {
         this.content = content;
         this.path = path;
+        this.inject();
+    }
+
+    @SuppressWarnings("unchecked")
+    private void inject() {
+        this.documentType = Registry.instance().getDocumentTypeManager().getForDocumentClass((Class<Document>) this.getClass());
     }
 
     public File getPath() {

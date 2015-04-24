@@ -3,6 +3,9 @@
 *.ipr
 *.iws
 
+# ignore intellij build folder
+out/
+
 # ignore eclipse project files
 .settings/
 .classpath

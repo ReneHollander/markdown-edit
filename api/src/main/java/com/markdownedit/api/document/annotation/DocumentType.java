@@ -1,7 +1,6 @@
 package com.markdownedit.api.document.annotation;
 
-import com.markdownedit.api.document.io.DocumentReader;
-import com.markdownedit.api.document.io.DocumentWriter;
+import com.markdownedit.api.document.io.DocumentIO;
 
 import java.lang.annotation.*;
 
@@ -14,8 +13,6 @@ public @interface DocumentType {
 
     String[] fileTypes();
 
-    Class<? extends DocumentReader> documentReader();
-
-    Class<? extends DocumentWriter> documentWriter();
+    Class<? extends DocumentIO> documentIO();
 
 }

@@ -1,5 +1,9 @@
+apply plugin: 'application'
+
 version = "0.0.1"
 sourceCompatibility = theSourceCompatibility
+
+mainClassName = 'com.markdownedit.app.ApplicationMain'
 
 dependencies {
   compile project(':api')

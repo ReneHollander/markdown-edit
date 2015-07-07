@@ -25,3 +25,9 @@
       1. Open Terminal
       2. Execute `./gradlew <idea/eclipse>`
 4. All project files will be generated and you can now open the project in the IDE you selected
+
+# Running from Source
+1. Clone `markdown-edit` repository
+2. Navigate to `markdown-edit` directory
+3. Open Terminal/Console
+4. Run `gradlew run`

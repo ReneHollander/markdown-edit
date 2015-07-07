@@ -10,6 +10,7 @@ out/
 .settings/
 .classpath
 .project
+bin/
 
 # ignore gradle related directories
 .gradle/
